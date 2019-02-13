@@ -1,0 +1,33 @@
+{
+  "name": "routarkjs",
+  "version": "0.1.0",
+  "description": "Single Page Application Router",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knowark/routarkjs.git"
+  },
+  "keywords": [
+    "spa",
+    "router"
+  ],
+  "author": "Nubark <it@nubark.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/knowark/routarkjs/issues"
+  },
+  "homepage": "https://github.com/knowark/routarkjs#readme",
+  "devDependencies": {
+    "jasmine": "^3.3.1",
+    "karma": "^4.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^2.0.1"
+  }
+}
