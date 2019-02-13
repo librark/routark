@@ -1,11 +1,12 @@
 import { Routark } from '../lib/routark.js'
 
 describe('Routark', function () {
+  let router = null
   beforeEach(function () {
-    this.router = new Routark(window)
+    router = new Routark(window)
   })
 
   it('can be instantiated', function () {
-    expect(this.router).toBeTruthy()
+    expect(router).toBeTruthy()
   })
 })
