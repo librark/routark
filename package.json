@@ -7,6 +7,23 @@
     "lib": "lib",
     "test": "tests"
   },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "verbose": true,
+    "clearMocks": true,
+    "coverageDirectory": "coverage"
+  },
   "scripts": {
     "test": "jest --coverage",
     "trial": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha test/*.js"
@@ -30,5 +47,6 @@
     "@babel/preset-env": "^7.3.1",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0"
-  }
+  },
+  "dependencies": {}
 }
