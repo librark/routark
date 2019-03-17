@@ -2,7 +2,7 @@
   "name": "@knowark/routarkjs",
   "version": "0.2.0",
   "description": "Single Page Application Router",
-  "main": "index.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "tests"
