@@ -153,4 +153,21 @@ describe('Routark', () => {
       expect(source).toEqual('/base/media')
       expect(target).toEqual('/base')
     })
+
+  it('navigates to the given path', async () => {
+    let url = null
+    let called = false
+    router._global = {
+      history: {
+        pushState: (data, title, _url) => { url = _url }
+      }
+    }
+    router.move = async () => { called = true }
+
+    const path = '/base/reports'
+    await router.navigate(path)
+
+    expect(url).toEqual(path)
+    expect(called).toBeTruthy()
+  })
 })
