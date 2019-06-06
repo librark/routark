@@ -132,7 +132,7 @@ describe('Routark', () => {
       let source = null
       let target = null
 
-      router.current = '/base/media'
+      router.current = '/base'
       router._global = {
         location: {
           pathname: '/base'
@@ -143,6 +143,11 @@ describe('Routark', () => {
         target = _target
       }
 
+      await router.move()
+      expect(source).toBeNull()
+      expect(target).toBeNull()
+
+      router.current = '/base/media'
       await router.move()
 
       expect(source).toEqual('/base/media')
