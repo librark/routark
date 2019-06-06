@@ -86,6 +86,15 @@ describe('Routark', () => {
     expect(called).toBeTruthy()
   })
 
+  it('has an onload event handler', async () => {
+    let called = false
+    router.move = () => { called = true }
+
+    router._onload(null)
+
+    expect(called).toBeTruthy()
+  })
+
   it('matches a source and a target path to get a split index', async () => {
     let sourceList = null
     let targetList = null
