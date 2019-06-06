@@ -1,12 +1,13 @@
 import { Routark } from '../lib/routark.js'
 
-describe('Routark', function () {
+describe('Routark', () => {
+  /** @type {Routark} */
   let router = null
-  beforeEach(function () {
+  beforeEach(() => {
     router = new Routark(window)
   })
 
-  it('can be instantiated', function () {
+  it('can be instantiated', () => {
     expect(router).toBeTruthy()
   })
 
@@ -24,5 +25,19 @@ describe('Routark', function () {
     ])
     expect(router._routes[0].path).toEqual('/base/')
     expect(router._routes[1].path).toEqual('/base/main')
+  })
+
+  it('gets the split index of two paths', () => {
+    let splitIndex = router._getSplitIndex([], [])
+    expect(splitIndex).toEqual(0)
+
+    splitIndex = router._getSplitIndex(
+      ['', 'base', 'reports'], ['', 'base', 'settings'])
+    expect(splitIndex).toEqual(2)
+
+    splitIndex = router._getSplitIndex(
+      ['', 'base', 'history', 'detail', '1'],
+      ['', 'base', 'history', 'detail', '3'])
+    expect(splitIndex).toEqual(4)
   })
 })
