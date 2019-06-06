@@ -63,6 +63,20 @@ describe('Routark', () => {
     expect(router.current).toEqual('/base/main')
   })
 
+  it('has an onnavigate event handler', async () => {
+    let path = null
+    const customEvent = new CustomEvent('Navigate', {
+      detail: {
+        path: '/base/media'
+      }
+    })
+    router.navigate = (_path) => { path = _path }
+
+    router._onnavigate(customEvent)
+
+    expect(path).toEqual('/base/media')
+  })
+
   it('matches a source and a target path to get a split index', async () => {
     let sourceList = null
     let targetList = null
@@ -81,7 +95,7 @@ describe('Routark', () => {
     expect(targetList).toEqual(['', 'base', 'report', 'detail', '1'])
   })
 
-  it('matches a source and a target path to get a split index', async () => {
+  it('matches a source and a target path to execute a path', async () => {
     let paths = []
     router._executePath = async (_path) => {
       paths.push(_path)
