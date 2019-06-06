@@ -72,7 +72,7 @@ describe('Routark', () => {
     })
     router.navigate = (_path) => { path = _path }
 
-    router._onnavigate(customEvent)
+    await router._onnavigate(customEvent)
 
     expect(path).toEqual('/base/media')
   })
@@ -81,7 +81,7 @@ describe('Routark', () => {
     let called = false
     router.move = () => { called = true }
 
-    router._onpopstate(null)
+    await router._onpopstate(null)
 
     expect(called).toBeTruthy()
   })
@@ -90,7 +90,7 @@ describe('Routark', () => {
     let called = false
     router.move = () => { called = true }
 
-    router._onload(null)
+    await router._onload(null)
 
     expect(called).toBeTruthy()
   })
@@ -126,4 +126,26 @@ describe('Routark', () => {
     await router._match('/base/report', '/base/report/detail/1')
     expect(paths).toEqual(['/base/report/detail', '/base/report/detail/1'])
   })
+
+  it('moves to its current internally set path from the global set path',
+    async () => {
+      let source = null
+      let target = null
+
+      router.current = '/base/media'
+      router._global = {
+        location: {
+          pathname: '/base'
+        }
+      }
+      router._match = async (_source, _target) => {
+        source = _source
+        target = _target
+      }
+
+      await router.move()
+
+      expect(source).toEqual('/base/media')
+      expect(target).toEqual('/base')
+    })
 })
