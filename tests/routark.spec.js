@@ -77,6 +77,15 @@ describe('Routark', () => {
     expect(path).toEqual('/base/media')
   })
 
+  it('has an onpopstate event handler', async () => {
+    let called = false
+    router.move = () => { called = true }
+
+    router._onpopstate(null)
+
+    expect(called).toBeTruthy()
+  })
+
   it('matches a source and a target path to get a split index', async () => {
     let sourceList = null
     let targetList = null
