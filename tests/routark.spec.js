@@ -170,4 +170,78 @@ describe('Routark', () => {
     expect(url).toEqual(path)
     expect(called).toBeTruthy()
   })
+
+  it('returns a source path parameters', async () => {
+    const regex = /:\w+.*?/gm
+    const path = 'users/:id/items/:reference'
+    const parameters = router._extractParameters(regex, path)
+
+    expect(parameters).toEqual([
+      { name: ':id', index: 6, lastIndex: 9 },
+      { name: ':reference', index: 16, lastIndex: 26 }
+    ])
+
+    console.log('parameters>>>>', parameters)
+  })
+
+  it('gets a target path dynamic values', async () => {
+    const parameters = [
+      { name: ':id', index: 6, lastIndex: 9 },
+      { name: ':reference', index: 16, lastIndex: 26 }
+    ]
+    const target = 'users/245/items/fkh3456'
+
+    const values = router._getDynamicValues(parameters, target)
+
+    expect(values[':id']).toEqual('245')
+    expect(values[':reference']).toEqual('fkh3456')
+
+    console.log('values>>>>', values)
+  })
+
+  // it('extracts the target url components', async () => {
+  //   let userId = null
+  //   router.addRoutes('/base/', [
+  //     {
+  //       'path': '',
+  //       'action': async () => null
+  //     },
+  //     {
+  //       'path': 'users/:id',
+  //       'action': async (id) => { userId = id }
+  //     },
+  //     {
+  //       'path': 'users/:id/items/:reference',
+  //       'action': async (id) => { userId = id }
+  //     }
+  //   ])
+
+  //   const _path = '/base/users/abcd1234'
+  //   await router._executePath(_path)
+
+  //   expect(userId).toEqual('abcd1234')
+  // })
+
+  // it('accepts parameters in the route path', async () => {
+  //   let userId = null
+  //   router.addRoutes('/base/', [
+  //     {
+  //       'path': '',
+  //       'action': async () => null
+  //     },
+  //     {
+  //       'path': 'users/:id',
+  //       'action': async (id) => { userId = id }
+  //     },
+  //     {
+  //       'path': 'users/:id/items/:reference',
+  //       'action': async (id) => { userId = id }
+  //     }
+  //   ])
+
+  //   const _path = '/base/users/abcd1234'
+  //   await router._executePath(_path)
+
+  //   expect(userId).toEqual('abcd1234')
+  // })
 })
