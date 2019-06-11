@@ -127,6 +127,22 @@ describe('Routark', () => {
     expect(paths).toEqual(['/base/report/detail', '/base/report/detail/1'])
   })
 
+  it('cleans a source or target path before matching them', () => {
+    const givenPath = '/base/media/items/'
+    const expectedPath = '/base/media/items'
+
+    const path = router._cleanPath(givenPath)
+
+    expect(path).toEqual(expectedPath)
+
+    const givenPath2 = '/base/media/items'
+    const expectedPath2 = '/base/media/items'
+
+    const path2 = router._cleanPath(givenPath2)
+
+    expect(path2).toEqual(expectedPath2)
+  })
+
   it('moves to its current internally set path from the global set path',
     async () => {
       let source = null
@@ -180,8 +196,6 @@ describe('Routark', () => {
       { name: ':id', index: 6, lastIndex: 9 },
       { name: ':reference', index: 16, lastIndex: 26 }
     ])
-
-    console.log('parameters>>>>', parameters)
   })
 
   it('gets a target path dynamic values', async () => {
@@ -196,52 +210,55 @@ describe('Routark', () => {
     expect(values[':id']).toEqual('245')
     expect(values[':reference']).toEqual('fkh3456')
 
-    console.log('values>>>>', values)
+    const target2 = 'users/245/items/fkh3456/'
+
+    const values2 = router._getDynamicValues(parameters, target2)
+    expect(values2[':id']).toEqual('245')
+    expect(values2[':reference']).toEqual('fkh3456')
   })
 
-  // it('extracts the target url components', async () => {
-  //   let userId = null
-  //   router.addRoutes('/base/', [
-  //     {
-  //       'path': '',
-  //       'action': async () => null
-  //     },
-  //     {
-  //       'path': 'users/:id',
-  //       'action': async (id) => { userId = id }
-  //     },
-  //     {
-  //       'path': 'users/:id/items/:reference',
-  //       'action': async (id) => { userId = id }
-  //     }
-  //   ])
+  it('gets a target path dynamic values of a wrong route', async () => {
+    const parameters = [
+      { name: ':id', index: 6, lastIndex: 9 },
+      { name: ':reference', index: 16, lastIndex: 26 }
+    ]
+    const target = 'users/items'
 
-  //   const _path = '/base/users/abcd1234'
-  //   await router._executePath(_path)
+    const values = router._getDynamicValues(parameters, target)
 
-  //   expect(userId).toEqual('abcd1234')
-  // })
+    expect(values[':id']).toEqual('items')
+    expect(values[':reference']).toEqual('')
+  })
 
-  // it('accepts parameters in the route path', async () => {
-  //   let userId = null
-  //   router.addRoutes('/base/', [
-  //     {
-  //       'path': '',
-  //       'action': async () => null
-  //     },
-  //     {
-  //       'path': 'users/:id',
-  //       'action': async (id) => { userId = id }
-  //     },
-  //     {
-  //       'path': 'users/:id/items/:reference',
-  //       'action': async (id) => { userId = id }
-  //     }
-  //   ])
+  it('rebuilds a target path replacing its parameters', async () => {
+    const values = {
+      ':id': '245',
+      ':reference': 'fkh3456'
+    }
+    const source = 'users/:id/items/:reference'
 
-  //   const _path = '/base/users/abcd1234'
-  //   await router._executePath(_path)
+    const route = router._rebuildPath(values, source)
 
-  //   expect(userId).toEqual('abcd1234')
-  // })
+    const target = 'users/245/items/fkh3456'
+    expect(route).toEqual(target)
+  })
+
+  it('executes a matching path action', async () => {
+    let userId = null
+    router.addRoutes('/base/', [
+      {
+        'path': '',
+        'action': async () => null
+      },
+      {
+        'path': 'users/:id',
+        'action': async (id) => { userId = id }
+      }
+    ])
+
+    const _path = '/base/users/abcd1234'
+    await router._executePath(_path)
+
+    expect(userId).toEqual('abcd1234')
+  })
 })
