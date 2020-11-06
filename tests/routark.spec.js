@@ -23,7 +23,7 @@ describe('Routark', () => {
         'action': async () => null
       }
     ])
-    expect(router._routes[0].path).toEqual('/base/')
+    expect(router._routes[0].path).toEqual('/base')
     expect(router._routes[1].path).toEqual('/base/main')
   })
 
@@ -54,9 +54,9 @@ describe('Routark', () => {
       }
     ])
 
-    await router._executePath('/base/')
+    await router._executePath('/base')
     expect(called).toEqual('base')
-    expect(router.current).toEqual('/base/')
+    expect(router.current).toEqual('/base')
 
     await router._executePath('/base/main')
     expect(called).toEqual('main')
@@ -111,6 +111,10 @@ describe('Routark', () => {
     await router._match('/base/report', '/base/report/detail/1')
     expect(sourceList).toEqual(['', 'base', 'report'])
     expect(targetList).toEqual(['', 'base', 'report', 'detail', '1'])
+
+    await router._match('/base', '/base/')
+    expect(sourceList).toEqual(['', 'base'])
+    expect(targetList).toEqual(['', 'base'])
   })
 
   it('matches a source and a target path to execute a path', async () => {
