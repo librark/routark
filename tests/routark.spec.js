@@ -189,6 +189,14 @@ describe('Routark', () => {
 
     expect(url).toEqual(path)
     expect(called).toBeTruthy()
+
+    router.root = '/customroot/'
+    called = false
+    url = null
+    await router.navigate(path)
+
+    expect(url).toEqual('/customroot' + path)
+    expect(called).toBeTruthy()
   })
 
   it('returns a source path parameters', async () => {
@@ -261,6 +269,30 @@ describe('Routark', () => {
     ])
 
     const _path = '/base/users/abcd1234'
+    await router._executePath(_path)
+
+    expect(userId).toEqual('abcd1234')
+  })
+
+  it('might use a custom root path as base', async () => {
+    let userId = null
+    router.root = '/rootpath/'
+
+    router.addRoutes('/base/', [
+      {
+        'path': '',
+        'action': async () => null
+      },
+      {
+        'path': 'users/:id',
+        'action': async (id) => { userId = id }
+      }
+    ])
+
+    expect(router._routes[0].path).toEqual('/rootpath/base')
+    expect(router._routes[1].path).toEqual('/rootpath/base/users/:id')
+
+    const _path = '/rootpath/base/users/abcd1234'
     await router._executePath(_path)
 
     expect(userId).toEqual('abcd1234')
