@@ -4,7 +4,7 @@ describe('Routark', () => {
   /** @type {Routark} */
   let router = null
   beforeEach(() => {
-    router = new Routark(window)
+    router = new Routark()
   })
 
   it('can be instantiated', () => {
@@ -179,7 +179,7 @@ describe('Routark', () => {
     let called = false
     router._global = {
       history: {
-        pushState: (data, title, _url) => { url = _url }
+        pushState: (_data, _title, _url) => { url = _url }
       }
     }
     router.move = async () => { called = true }
