@@ -14,8 +14,12 @@ standard: ## Format the project's source code with StandardJS
 push: ## Push git repository with its tags
 	git push && git push --tags
 
-upgrades:
+updates:
+	npx npm-check-updates
+
+upgrade:
 	npx npm-check-updates --upgrade
+	npm install
 
 gitmessage: ## Add .gitmessage file as git commit template
 	touch .gitmessage
