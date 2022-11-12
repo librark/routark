@@ -8,18 +8,6 @@
     "lib": "lib",
     "test": "tests"
   },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ]
-  },
   "jest": {
     "transform": {}
   },
@@ -42,9 +30,6 @@
   },
   "homepage": "https://github.com/knowark/routarkjs#readme",
   "devDependencies": {
-    "@babel/core": "^7.19.6",
-    "@babel/preset-env": "^7.19.4",
-    "babel-jest": "^29.2.2",
     "jest": "^29.2.2"
   },
   "dependencies": {
