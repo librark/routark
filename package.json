@@ -30,9 +30,9 @@
   },
   "homepage": "https://github.com/knowark/routarkjs#readme",
   "devDependencies": {
-    "jest": "^29.2.2"
+    "jest": "^29.5.0"
   },
   "dependencies": {
-    "@knowark/routarkjs": "^0.6.2"
+    "@knowark/routarkjs": "^0.6.4"
   }
 }
