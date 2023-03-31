@@ -1,6 +1,6 @@
 {
   "name": "@knowark/routarkjs",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "Single Page Application Router",
   "main": "lib/index.js",
   "type": "module",
