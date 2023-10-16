@@ -1,5 +1,5 @@
 export declare class Routark {
-  constructor(globalObject: object, root: string)
+  constructor(globalObject?: object, root?: string)
 
   addRoutes(basePath: string, routes: { path: string }): void
 
