@@ -1,5 +1,5 @@
 {
-  "name": "@knowark/routarkjs",
+  "name": "@librark/routark",
   "version": "0.6.6",
   "description": "Single Page Application Router",
   "main": "lib/index.js",
@@ -17,22 +17,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/knowark/routarkjs.git"
+    "url": "git+https://github.com/librark/routarkjs.git"
   },
   "keywords": [
     "spa",
     "router"
   ],
-  "author": "Knowark <it@knowark.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/knowark/routarkjs/issues"
+    "url": "https://github.com/librark/routarkjs/issues"
   },
-  "homepage": "https://github.com/knowark/routarkjs#readme",
+  "homepage": "https://github.com/librark/routarkjs#readme",
   "devDependencies": {
-    "jest": "^29.5.0"
-  },
-  "dependencies": {
-    "@knowark/routarkjs": "^0.6.4"
+    "jest": "^29.7.0"
   }
 }
