@@ -1,6 +1,6 @@
 {
   "name": "@librark/routark",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "description": "Single Page Application Router",
   "main": "lib/index.js",
   "type": "module",
