@@ -1,4 +1,11 @@
+<h1 align="center">Routark</h1>
 <p align="center">
+  <i>Single Page Application Router</i>
+</p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/@librark/routark">
+    <img src="https://badgen.net/npm/v/@librark/routark?color=green"/>
+  </a>
   <a href="https://codecov.io/gh/librark/routark">
     <img src="https://codecov.io/gh/librark/routark/graph/badge.svg?token=lrTCF0g58T"/>
   </a>
@@ -8,10 +15,6 @@
     <img src="https://codecov.io/gh/librark/routark/graphs/sunburst.svg?token=lrTCF0g58T"/>
   </a>
 </p>
-
-# Routarkjs
-
-Single Page Application Router
 
 ## Installation
 
