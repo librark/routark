@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/librark/routarkjs.git"
+    "url": "git+https://github.com/librark/routark.git"
   },
   "keywords": [
     "spa",
@@ -25,9 +25,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/librark/routarkjs/issues"
+    "url": "https://github.com/librark/routark/issues"
   },
-  "homepage": "https://github.com/librark/routarkjs#readme",
+  "homepage": "https://github.com/librark/routark#readme",
   "devDependencies": {
     "jest": "^29.7.0"
   }
